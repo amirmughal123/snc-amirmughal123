@@ -21,4 +21,25 @@ model User {
   title              String @db.VarChar(100)
   followers          Int
   following          Int
+  companyUsers       CompanyUser[]
 }
+
+model Company {
+  id                 Int    @id @default(autoincrement())
+  name               String @db.VarChar(100)
+  companyUsers       CompanyUser[]
+}
+
+model CompanyUser {
+  userId  Int
+  companyId Int
+
+  user    User @relation(fields: [userId], references: [id])
+  company   Company @relation(fields: [companyId], references: [id])
+
+  @@id([userId, companyId])
+
+  @@map("CompanyUser")
+}
+
+

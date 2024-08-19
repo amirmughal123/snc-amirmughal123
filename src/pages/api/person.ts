@@ -1,6 +1,6 @@
-import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 import { Person } from "@/utils/common/person";
 import { getPersonFromDB } from "@/utils/server/db";
+import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -17,11 +17,11 @@ const getPerson: NextApiHandler = async (req, res) => {
       await sleep(3000);
       break;
     case Person.PersonC:
-      res.status(500).send("Error: Request failed for Person C");
-      return;
+      return res
+        .status(500)
+        .json({ error: "Error: Request failed for Person C" });
     default:
-      res.status(404).send("Error: Person not found");
-      return;
+      return res.status(404).json({ error: "Error: Person not found" });
   }
 
   const user = await getPersonFromDB(person);
@@ -29,7 +29,7 @@ const getPerson: NextApiHandler = async (req, res) => {
   if (user) {
     res.status(200).json(user);
   } else {
-    res.status(500).send("Error: Request failed");
+    res.status(500).json({ error: "Error: Request failed" });
   }
 
   res.end();
