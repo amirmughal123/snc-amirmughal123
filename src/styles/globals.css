@@ -10,9 +10,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 0, 0, 0;
   }
 }
 
@@ -30,4 +28,13 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.button-active {
+  background-color: rgb(var(--foreground-rgb));
+  color: rgb(var(--background-start-rgb));
+}
+
+.button-disabled {
+  color: gray;
 }

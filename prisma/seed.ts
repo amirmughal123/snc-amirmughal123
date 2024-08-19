@@ -1,6 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { mockUsers } from "@/utils/server/mock-users";
-import { Person, User } from "@/utils/common/person";
 
 const prisma = new PrismaClient();
 
