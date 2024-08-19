@@ -2,7 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['images.squarespace-cdn.com'], // Add your domain(s) here
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.squarespace-cdn.com',
+        pathname: '**',
+      },
+    ], // Add your domain(s) here
   }
 };
 
